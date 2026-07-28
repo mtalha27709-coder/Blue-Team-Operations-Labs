@@ -1,0 +1,258 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Segoe UI Symbol;}{\f2\fnil Calibri;}{\f3\fnil\fcharset1 Segoe UI Emoji;}}
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 # MITRE ATT&CK Sample Logs + Splunk Manual Upload Lab\par
+\par
+## \f1\u-10180?\u-8273?\f0  Goal\par
+\par
+Tum:\par
+\par
+* Manual logs upload karoge\par
+* Splunk me search karoge\par
+* MITRE tactics samjhoge\par
+* Detection queries practice karoge\par
+\par
+Real networking ki zarurat nahi \f1\u-10179?\u-8690?\f0\par
+\par
+---\par
+\par
+# \f1\u-10179?\u-8576?\f0  STEP 1 \f2\emdash  CREATE SAMPLE LOG FILE\par
+\par
+Windows me:\par
+\par
+1. Desktop par new file banao:\par
+\par
+```text\par
+mitre_logs.txt\par
+```\par
+\par
+2. Neeche wale logs copy paste karo.\par
+\par
+---\par
+\par
+# \f1\u-10179?\u-8996?\f0  SAMPLE MITRE ATT&CK LOGS (50 EVENTS)\par
+\par
+```log\par
+2026-05-22 10:00:01 EventCode=1 Technique=T1059.001 Tactic=Execution User=talha Process=powershell.exe CommandLine="powershell whoami"\par
+2026-05-22 10:00:05 EventCode=1 Technique=T1059.001 Tactic=Execution User=talha Process=cmd.exe CommandLine="cmd /c dir"\par
+2026-05-22 10:00:10 EventCode=1 Technique=T1059.001 Tactic=Execution User=talha Process=powershell.exe CommandLine="powershell -nop -w hidden"\par
+2026-05-22 10:00:15 EventCode=3 Technique=T1046 Tactic=Discovery SourceIP=192.168.1.50 DestinationIP=192.168.1.10 Port=445\par
+2026-05-22 10:00:20 EventCode=4625 Technique=T1110 Tactic=CredentialAccess User=admin Status=FailedLogon SourceIP=192.168.1.20\par
+2026-05-22 10:00:25 EventCode=4625 Technique=T1110 Tactic=CredentialAccess User=root Status=FailedLogon SourceIP=192.168.1.20\par
+2026-05-22 10:00:30 EventCode=4624 Technique=T1021 Tactic=LateralMovement User=administrator LogonType=10 SourceIP=192.168.1.25\par
+2026-05-22 10:00:35 EventCode=1 Technique=T1053.005 Tactic=Persistence Process=schtasks.exe TaskName=Updater\par
+2026-05-22 10:00:40 EventCode=13 Technique=T1547 Tactic=Persistence RegistryKey=HKCU\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\par
+2026-05-22 10:00:45 EventCode=1 Technique=T1003 Tactic=CredentialAccess Process=procdump.exe Target=lsass.exe\par
+2026-05-22 10:00:50 EventCode=1 Technique=T1003 Tactic=CredentialAccess Process=mimikatz.exe Action=CredentialDump\par
+2026-05-22 10:00:55 EventCode=22 Technique=T1071.004 Tactic=CommandAndControl DNSQuery=malicious-domain.com\par
+2026-05-22 10:01:00 EventCode=3 Technique=T1071 Tactic=CommandAndControl DestinationIP=45.33.22.10 Port=443\par
+2026-05-22 10:01:05 EventCode=11 Technique=T1105 Tactic=CommandAndControl FileCreated=payload.exe\par
+2026-05-22 10:01:10 EventCode=1 Technique=T1059.001 Tactic=Execution Process=powershell.exe CommandLine="Invoke-WebRequest"\par
+2026-05-22 10:01:15 EventCode=3 Technique=T1041 Tactic=Exfiltration DestinationIP=185.199.110.1 Port=80 BytesSent=2048\par
+2026-05-22 10:01:20 EventCode=1 Technique=T1082 Tactic=Discovery Process=systeminfo.exe\par
+2026-05-22 10:01:25 EventCode=1 Technique=T1033 Tactic=Discovery Process=whoami.exe\par
+2026-05-22 10:01:30 EventCode=1 Technique=T1057 Tactic=Discovery Process=tasklist.exe\par
+2026-05-22 10:01:35 EventCode=1 Technique=T1016 Tactic=Discovery Process=ipconfig.exe\par
+2026-05-22 10:01:40 EventCode=1 Technique=T1087 Tactic=Discovery Process="net user"\par
+2026-05-22 10:01:45 EventCode=4625 Technique=T1110 Tactic=CredentialAccess User=guest Status=FailedLogon SourceIP=192.168.1.99\par
+2026-05-22 10:01:50 EventCode=4625 Technique=T1110 Tactic=CredentialAccess User=test Status=FailedLogon SourceIP=192.168.1.99\par
+2026-05-22 10:01:55 EventCode=4625 Technique=T1110 Tactic=CredentialAccess User=administrator Status=FailedLogon SourceIP=192.168.1.99\par
+2026-05-22 10:02:00 EventCode=1 Technique=T1562 Tactic=DefenseEvasion Process=powershell.exe CommandLine="-EncodedCommand aGVsbG8="\par
+2026-05-22 10:02:05 EventCode=1 Technique=T1562 Tactic=DefenseEvasion Process=wevtutil.exe Action=ClearLogs\par
+2026-05-22 10:02:10 EventCode=1 Technique=T1027 Tactic=DefenseEvasion Process=obfuscated_script.ps1\par
+2026-05-22 10:02:15 EventCode=3 Technique=T1071 Tactic=CommandAndControl DestinationIP=8.8.8.8 Port=53\par
+2026-05-22 10:02:20 EventCode=22 Technique=T1071.004 Tactic=CommandAndControl DNSQuery=evil-c2.com\par
+2026-05-22 10:02:25 EventCode=1 Technique=T1055 Tactic=DefenseEvasion Process=dllinjector.exe\par
+2026-05-22 10:02:30 EventCode=7 Technique=T1055 Tactic=DefenseEvasion DLL=malicious.dll\par
+2026-05-22 10:02:35 EventCode=1 Technique=T1543 Tactic=Persistence ServiceName=UpdaterService\par
+2026-05-22 10:02:40 EventCode=1 Technique=T1112 Tactic=DefenseEvasion RegistryModification=DisabledAV\par
+2026-05-22 10:02:45 EventCode=3 Technique=T1021 Tactic=LateralMovement DestinationIP=192.168.1.60 Port=3389\par
+2026-05-22 10:02:50 EventCode=4624 Technique=T1021 Tactic=LateralMovement User=backupadmin LogonType=10\par
+2026-05-22 10:02:55 EventCode=1 Technique=T1105 Tactic=CommandAndControl Process=curl.exe URL=http://malicious-site.com\par
+2026-05-22 10:03:00 EventCode=11 Technique=T1105 Tactic=CommandAndControl FileCreated=backdoor.exe\par
+2026-05-22 10:03:05 EventCode=1 Technique=T1204 Tactic=Execution Process=invoice.docm\par
+2026-05-22 10:03:10 EventCode=1 Technique=T1204 Tactic=Execution Process=macro_payload.ps1\par
+2026-05-22 10:03:15 EventCode=3 Technique=T1041 Tactic=Exfiltration DestinationIP=23.45.66.10 Port=8080 BytesSent=5096\par
+2026-05-22 10:03:20 EventCode=1 Technique=T1486 Tactic=Impact Process=ransomware.exe\par
+2026-05-22 10:03:25 EventCode=11 Technique=T1486 Tactic=Impact FileModified=important.docx.encrypted\par
+2026-05-22 10:03:30 EventCode=1 Technique=T1490 Tactic=Impact Process=vssadmin.exe Action=DeleteShadows\par
+2026-05-22 10:03:35 EventCode=3 Technique=T1046 Tactic=Discovery DestinationIP=192.168.1.70 Port=22\par
+2026-05-22 10:03:40 EventCode=1 Technique=T1018 Tactic=Discovery Process="net view"\par
+2026-05-22 10:03:45 EventCode=22 Technique=T1016 Tactic=Discovery DNSQuery=internal-server.local\par
+2026-05-22 10:03:50 EventCode=1 Technique=T1059.003 Tactic=Execution Process=wscript.exe Script=payload.vbs\par
+2026-05-22 10:03:55 EventCode=1 Technique=T1059.007 Tactic=Execution Process=javascript.js\par
+2026-05-22 10:04:00 EventCode=3 Technique=T1105 Tactic=CommandAndControl DestinationIP=104.26.10.78 Port=443\par
+2026-05-22 10:04:05 EventCode=4624 Technique=T1078 Tactic=InitialAccess User=validuser Status=SuccessfulLogin\par
+2026-05-22 10:04:10 EventCode=1 Technique=T1566 Tactic=InitialAccess Process=phishing_attachment.exe\par
+```\par
+\par
+---\par
+\par
+# \f1\u-10179?\u-8576?\f0  STEP 2 \f2\emdash  OPEN SPLUNK\par
+\par
+Go to:\par
+\par
+```text\par
+Add Data\par
+```\par
+\par
+---\par
+\par
+# \f1\u-10179?\u-8576?\f0  STEP 3 \f2\emdash  UPLOAD FILE\par
+\par
+1. Click:\par
+\par
+```text\par
+Upload\par
+```\par
+\par
+2. Select:\par
+\par
+```text\par
+mitre_logs.txt\par
+```\par
+\par
+3. Click:\par
+\par
+```text\par
+Next\par
+```\par
+\par
+---\par
+\par
+# \f1\u-10179?\u-8576?\f0  STEP 4 \f2\emdash  SOURCE TYPE\par
+\par
+Select:\par
+\par
+```text\par
+Automatically detect\par
+```\par
+\par
+---\par
+\par
+# \f1\u-10179?\u-8576?\f0  STEP 5 \f2\emdash  INDEX\par
+\par
+Choose:\par
+\par
+```text\par
+main\par
+```\par
+\par
+---\par
+\par
+# \f1\u-10179?\u-8576?\f0  STEP 6 \f2\emdash  START SEARCHING \f1\u-10179?\u-8923?\f0\par
+\par
+## Show all logs\par
+\par
+```spl\par
+index=main\par
+```\par
+\par
+---\par
+\par
+# \f1\u-10179?\u-8923?\f0  MITRE ATT&CK SEARCHES\par
+\par
+## PowerShell Activity\par
+\par
+```spl\par
+index=main powershell.exe\par
+```\par
+\par
+---\par
+\par
+## Failed Logins\par
+\par
+```spl\par
+index=main EventCode=4625\par
+```\par
+\par
+---\par
+\par
+## RDP Logins\par
+\par
+```spl\par
+index=main LogonType=10\par
+```\par
+\par
+---\par
+\par
+## Persistence Activity\par
+\par
+```spl\par
+index=main Tactic=Persistence\par
+```\par
+\par
+---\par
+\par
+## Discovery Commands\par
+\par
+```spl\par
+index=main Tactic=Discovery\par
+```\par
+\par
+---\par
+\par
+## Credential Dumping\par
+\par
+```spl\par
+index=main lsass.exe\par
+```\par
+\par
+---\par
+\par
+## Encoded PowerShell\par
+\par
+```spl\par
+index=main EncodedCommand\par
+```\par
+\par
+---\par
+\par
+## Exfiltration\par
+\par
+```spl\par
+index=main Tactic=Exfiltration\par
+```\par
+\par
+---\par
+\par
+## Command & Control\par
+\par
+```spl\par
+index=main Tactic=CommandAndControl\par
+```\par
+\par
+---\par
+\par
+## Ransomware Behavior\par
+\par
+```spl\par
+index=main ransomware.exe\par
+```\par
+\par
+---\par
+\par
+# \f3\u-10178?\u-8736?\f0  WHAT YOU SHOULD LEARN\par
+\par
+For every alert:\par
+\par
+| Thing              | Example        |\par
+| ------------------ | -------------- |\par
+| MITRE Tactic       | Execution      |\par
+| Technique ID       | T1059          |\par
+| Suspicious Process | powershell.exe |\par
+| Detection Query    | SPL            |\par
+\par
+---\par
+\par
+# \f1\u-10179?\u-8923?\f0  FINAL GOAL\par
+\par
+Tum:\par
+\par
+* Splunk searching seekhoge\par
+* MITRE ATT&CK mapping seekhoge\par
+* Threat Hunting mindset develop karoge\par
+* SOC analyst workflow samjhoge\par
+\par
+WITHOUT real malware or networking \f1\u-10179?\u-8690?\u-10179?\u-8923?\f0\par
+}
+ 
