@@ -1,284 +1,373 @@
-# ?? RDP Brute Force Attack Investigation using Splunk
+<div align="center">
 
-## ?? Project Overview
+# 🛡️ Enterprise RDP Brute Force Attack Investigation with Splunk
 
-This project demonstrates the investigation of a **Remote Desktop Protocol (RDP) Brute Force Attack** using **Splunk Enterprise**. The objective was to identify repeated failed RDP login attempts, analyze attacker behavior, investigate targeted user accounts, correlate successful authentication events, and determine whether unauthorized access was achieved.
+### 🔍 Detect • Investigate • Correlate • Respond • Report
 
-The investigation follows a real-world Security Operations Center (SOC) workflow using Windows Security Event Logs and Splunk Search Processing Language (SPL).
+<p>
+<img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Splunk-Enterprise-black?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/SOC-Investigation-blue?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Threat-Hunting-darkgreen?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/MITRE-ATT%26CK-red?style=for-the-badge"/>
+</p>
+
+<p>
+<img src="https://img.shields.io/badge/Event%20ID-4624-blue?style=flat-square"/>
+<img src="https://img.shields.io/badge/Event%20ID-4625-red?style=flat-square"/>
+<img src="https://img.shields.io/badge/RDP-Logon%20Type%2010-darkgreen?style=flat-square"/>
+<img src="https://img.shields.io/badge/SPL-Detection%20Engineering-black?style=flat-square"/>
+</p>
+
+</div>
 
 ---
 
-# ?? Objectives
+# 📖 Project Overview
 
-- Detect failed RDP authentication attempts
+The **Enterprise RDP Brute Force Attack Investigation with Splunk** demonstrates a real-world Security Operations Center (SOC) investigation into a Remote Desktop Protocol (RDP) brute-force attack using **Splunk Enterprise** and **Windows Security Event Logs**.
+
+The objective of this lab was to detect repeated failed authentication attempts, identify attacker infrastructure, investigate targeted user accounts, correlate failed and successful logins, validate Indicators of Compromise (IOCs), and assess the likelihood of account compromise.
+
+Following a structured SOC investigation methodology, Windows authentication events were ingested into Splunk, analyzed using Search Processing Language (SPL), mapped to the **MITRE ATT&CK Framework**, and documented with professional incident response findings.
+
+This project reflects the day-to-day responsibilities of SOC Analysts, Detection Engineers, Blue Team professionals, and Incident Responders responsible for monitoring enterprise authentication systems.
+
+---
+
+# 🎯 Project Objectives
+
+This investigation focused on the following objectives:
+
+- Detect repeated failed Remote Desktop logins
 - Identify brute-force attack patterns
-- Analyze attacker source IP addresses
-- Investigate targeted user accounts
-- Correlate failed and successful logins
-- Identify Indicators of Compromise (IOCs)
+- Investigate attacker source IP addresses
+- Analyze targeted user accounts
+- Correlate authentication events
+- Validate Indicators of Compromise (IOCs)
 - Map findings to the MITRE ATT&CK Framework
-- Document incident findings and recommendations
+- Produce professional incident investigation documentation
 
 ---
 
-# ??? Lab Environment
+# 🏗️ Investigation Workflow
 
-| Component | Details |
-|----------|---------|
-| SIEM | Splunk Enterprise |
-| Data Source | Windows Security Event Logs |
-| Log Type | Authentication Logs |
-| Event IDs | 4624, 4625 |
-| Logon Type | 10 (Remote Desktop Protocol) |
-| Framework | MITRE ATT&CK |
-
----
-
-# ?? Skills Demonstrated
-
-- Splunk SPL
-- Log Analysis
-- RDP Investigation
-- Brute Force Detection
-- Threat Hunting
-- SOC Investigation
-- Windows Security Monitoring
-- MITRE ATT&CK Mapping
-- Incident Response
-
----
-
-# ?? Project Structure
-
-```
-RDP-BruteForce-Investigation/
-?
-??? README.md
-??? Investigation_Report.pdf
-??? SPL_Queries.md
-??? Screenshots/
-?   ??? Failed_Logins.png
-?   ??? Source_IP_Analysis.png
-?   ??? User_Analysis.png
-?   ??? Threshold_Detection.png
-?   ??? Successful_Login.png
-?   ??? Correlation.png
-?   ??? Dashboard.png
-?
-??? Logs/
-    ??? rdp_logs.txt
-```
-
----
-
-# ?? Investigation Workflow
-
-```
+```text
 Windows Authentication Logs
-            ?
-            ?
-      Splunk Ingestion
-            ?
-            ?
- Failed Login Analysis (4625)
-            ?
-            ?
- Source IP Investigation
-            ?
-            ?
+              │
+              ▼
+      Splunk Log Ingestion
+              │
+              ▼
+ Failed Login Investigation
+              │
+              ▼
+ Source IP Analysis
+              │
+              ▼
  User Account Analysis
-            ?
-            ?
- Brute Force Detection
-            ?
-            ?
- Successful Login Correlation
-            ?
-            ?
- IOC Identification
-            ?
-            ?
+              │
+              ▼
+ Authentication Correlation
+              │
+              ▼
+ IOC Validation
+              │
+              ▼
  MITRE ATT&CK Mapping
-            ?
-            ?
+              │
+              ▼
+ Risk Assessment
+              │
+              ▼
  Incident Report
 ```
 
 ---
 
-# ?? Investigation Steps
+# 🖥️ Investigation Environment
 
-## Step 1 � Log Collection
-
-Authentication logs were uploaded into Splunk and indexed for analysis.
+| Component | Purpose |
+|-----------|---------|
+| SIEM Platform | Splunk Enterprise |
+| Log Source | Windows Security Event Logs |
+| Event IDs | 4624 & 4625 |
+| Authentication Type | RDP (Logon Type 10) |
+| Detection Language | SPL |
+| Framework | MITRE ATT&CK |
 
 ---
 
-## Step 2 � Failed Login Analysis
+# 📂 Repository Structure
 
-### SPL Query
+```text
+Enterprise-RDP-BruteForce-Investigation/
 
-```spl
-index=rdp eventcode=4625 logon_type=10
+│
+├── README.md
+├── Investigation_Report.pdf
+├── SPL_Queries.md
+│
+├── Logs/
+│   └── rdp_logs.txt
+│
+├── Screenshots/
+│   ├── Failed_Logins
+│   ├── Source_IP_Analysis
+│   ├── User_Analysis
+│   ├── Threshold_Detection
+│   ├── Authentication_Correlation
+│   ├── Dashboard
+│   └── IOC_Investigation
+│
+└── MITRE_Mapping/
 ```
 
-Purpose:
+---
 
-- Detect failed RDP logins
-- Identify brute-force attempts
+# 🔍 Investigation Phases
+
+## 🔹 Phase 1 — Log Collection
+
+Authentication logs were ingested into Splunk for centralized analysis.
+
+Activities included:
+
+- Log Upload
+- Data Parsing
+- Index Validation
+- Event Verification
 
 ---
 
-## Step 3 � Source IP Investigation
+## 🔹 Phase 2 — Failed Authentication Analysis
 
-### SPL Query
+Repeated failed login attempts were investigated using Windows Security Event ID **4625**.
 
-```spl
-index=rdp eventcode=4625
-| stats count by src_ip
-| sort - count
-```
+Analysis focused on:
 
-Purpose:
-
-- Identify attacker IP addresses
-- Rank IPs by failed login attempts
+- Authentication failures
+- Failed RDP logins
+- Login frequency
+- Suspicious authentication patterns
 
 ---
 
-## Step 4 � User Account Analysis
+## 🔹 Phase 3 — Source IP Investigation
 
-### SPL Query
+Attacker infrastructure was analyzed by reviewing source IP activity.
 
-```spl
-index=rdp eventcode=4625
-| stats count by user
-| sort - count
-```
+Investigation included:
 
-Purpose:
-
-- Identify targeted user accounts
-- Detect attacks against privileged users
+- Source IP frequency
+- Geographic analysis (where applicable)
+- Failed login volume
+- High-risk IP identification
 
 ---
 
-## Step 5 � Brute Force Detection
+## 🔹 Phase 4 — User Account Investigation
 
-### SPL Query
+Targeted accounts were analyzed to determine attack focus.
 
-```spl
-index=rdp eventcode=4625
-| stats count by src_ip
-| where count > 5
-```
+Activities included:
 
-Purpose:
-
-- Apply threshold-based detection
-- Flag suspicious source IPs
+- Privileged account targeting
+- Username frequency
+- Account enumeration indicators
+- Authentication attempts
 
 ---
 
-## Step 6 � Successful Login Correlation
+## 🔹 Phase 5 — Authentication Correlation
 
-### SPL Query
+Failed and successful authentication events were correlated to identify possible compromise.
 
-```spl
-index=rdp (eventcode=4624 OR eventcode=4625)
-| stats values(eventcode) as codes count by src_ip user
-```
+Correlation included:
 
-Purpose:
-
-- Correlate failed and successful logins
-- Identify possible account compromise
+- Event ID 4625
+- Event ID 4624
+- Source IP matching
+- User account matching
+- Authentication timeline
 
 ---
 
-# ?? Indicators of Compromise (IOCs)
+## 🔹 Phase 6 — IOC Validation
 
-| IOC Type | Value |
-|----------|-------|
-| Attack Type | RDP Brute Force |
-| Failed Login | Event ID 4625 |
-| Successful Login | Event ID 4624 |
-| Logon Type | 10 (RDP) |
-| Activity | Multiple Failed Logins |
-| Activity | Successful Login After Failures |
+Indicators of Compromise were extracted and validated.
+
+Examples included:
+
+- Malicious IP Addresses
+- Brute-force Activity
+- Authentication Failures
+- Successful Login After Failures
 
 ---
 
-# ??? MITRE ATT&CK Mapping
+# 🚩 Indicators of Compromise (IOCs)
 
-| Tactic | Technique | MITRE ID |
-|---------|-----------|-----------|
+| IOC Type | Description |
+|-----------|-------------|
+| Event ID 4625 | Failed Authentication |
+| Event ID 4624 | Successful Authentication |
+| Logon Type 10 | Remote Desktop Login |
+| Repeated Authentication Failures | Brute Force Activity |
+| Source IP | Potential Attacker |
+| Successful Login After Failures | Possible Account Compromise |
+
+---
+
+# 🗺️ MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID |
+|---------|-----------|----|
 | Credential Access | Brute Force | T1110 |
 | Lateral Movement | Remote Services (RDP) | T1021.001 |
 | Defense Evasion | Valid Accounts | T1078 |
 
 ---
 
-# ?? Key Findings
+# 📊 Key Findings
 
-- Multiple failed RDP authentication attempts detected.
-- A single source IP generated excessive failed login attempts.
-- Administrative accounts were repeatedly targeted.
-- Successful authentication occurred after repeated failures.
-- Attack behavior matched brute-force techniques.
-- Potential unauthorized system access identified.
+The investigation revealed:
 
----
-
-# ?? Risk Assessment
-
-Potential risks include:
-
-- Unauthorized system access
-- Credential compromise
-- Privilege escalation
-- Lateral movement
-- Data theft
-- Persistence within the environment
+- High-volume failed RDP authentication attempts
+- Multiple authentication failures originating from a single source IP
+- Repeated attacks targeting privileged accounts
+- Successful authentication following repeated failures
+- Indicators consistent with brute-force activity
+- Potential unauthorized system access requiring immediate investigation
 
 ---
 
-# ??? Security Recommendations
+# ⚠️ Risk Assessment
 
-- Enable Multi-Factor Authentication (MFA)
-- Restrict RDP access through VPN
-- Implement account lockout policies
+Potential organizational risks included:
+
+- Unauthorized Remote Desktop Access
+- Credential Compromise
+- Privilege Escalation
+- Lateral Movement
+- Data Exfiltration
+- Persistence Within the Environment
+
+---
+
+# 🛡️ Security Recommendations
+
+Recommended defensive actions include:
+
+- Enforce Multi-Factor Authentication (MFA)
+- Restrict RDP exposure through VPN
+- Configure Account Lockout Policies
 - Continuously monitor Windows authentication logs
-- Investigate suspicious IP addresses
+- Block malicious IP addresses
 - Review privileged account activity
-- Deploy automated Splunk alerts
+- Deploy automated Splunk correlation searches
 - Strengthen password policies
 
 ---
 
-# ?? Learning Outcomes
+# 🛠️ Technologies & Tools
 
-After completing this project, I gained practical experience in:
+### SIEM
 
-- Investigating RDP brute-force attacks
-- Writing Splunk SPL queries
-- Correlating Windows Event Logs
-- Detecting credential attacks
-- Identifying Indicators of Compromise (IOCs)
+- Splunk Enterprise
+
+### Log Sources
+
+- Windows Security Event Logs
+
+### Investigation
+
+- Search Processing Language (SPL)
+- Windows Authentication Analysis
+- IOC Validation
+- MITRE ATT&CK Mapping
+
+---
+
+# 📊 Skills Demonstrated
+
+- Splunk Enterprise
+- SPL Query Development
+- Windows Event Log Analysis
+- Authentication Monitoring
+- RDP Investigation
+- Brute Force Detection
+- Threat Hunting
+- SOC Investigation
+- Detection Engineering
+- IOC Validation
+- MITRE ATT&CK Mapping
+- Incident Response Documentation
+
+---
+
+# 📚 Learning Outcomes
+
+This project strengthened practical skills in:
+
+- Investigating Windows authentication events
+- Detecting brute-force attacks
+- Correlating security events
+- Writing efficient SPL searches
+- Identifying Indicators of Compromise
 - Applying MITRE ATT&CK mapping
-- Conducting SOC investigations
-- Developing incident response documentation
+- Producing professional SOC investigation reports
+- Following enterprise incident response workflows
 
 ---
 
-# ?? Conclusion
+# 🚀 Future Enhancements
 
-This project demonstrates a complete SOC-style investigation of an RDP brute-force attack using Splunk Enterprise. By analyzing Windows authentication logs, correlating failed and successful login events, identifying attacker behavior, and mapping findings to the MITRE ATT&CK Framework, the investigation highlights practical skills required for SOC Analysts, Blue Team professionals, and Incident Responders.
+Future improvements may include:
+
+- Real-time Splunk Alerting
+- Risk-Based Alerting (RBA)
+- Splunk Enterprise Security Integration
+- GeoIP Source IP Enrichment
+- Threat Intelligence Integration
+- Automated SOAR Response
+- Windows Active Directory Attack Detection
+- Splunk Dashboards for Authentication Monitoring
 
 ---
 
-## ????? Author
+# 🏆 Conclusion
 
-**Muhammad Talha**
+The **Enterprise RDP Brute Force Attack Investigation with Splunk** demonstrates a complete SOC investigation workflow for identifying and responding to authentication-based attacks in an enterprise environment.
 
-Cyber Security Student | SOC Analyst | Splunk | Threat Hunting | Blue Team | Incident Response | MITRE ATT&CK
+By analyzing Windows Security Event Logs, developing SPL queries, correlating authentication events, validating Indicators of Compromise (IOCs), and mapping adversary behavior to the MITRE ATT&CK Framework, this project showcases practical experience in security monitoring, threat detection, incident investigation, and defensive security operations.
+
+This repository reflects real-world investigative methodologies commonly used by **SOC Analysts, Detection Engineers, Threat Hunters, Blue Team professionals, and Incident Responders** to detect, investigate, and mitigate credential-based attacks.
+
+---
+
+# 📈 Project Status
+
+| Component | Status |
+|-----------|--------|
+| 📥 Log Collection | ✅ Completed |
+| 🔍 Authentication Analysis | ✅ Completed |
+| 🌐 Source IP Investigation | ✅ Completed |
+| 👤 User Account Analysis | ✅ Completed |
+| 🔗 Authentication Correlation | ✅ Completed |
+| 🚩 IOC Validation | ✅ Completed |
+| 🗺️ MITRE ATT&CK Mapping | ✅ Completed |
+| 📄 Investigation Report | ✅ Completed |
+| 🎯 Overall Outcome | ✅ Successful |
+
+---
+
+<div align="center">
+
+## ⭐ If you found this project useful, consider giving it a Star!
+
+**Made with ❤️ by Muhammad Talha**
+
+*Building Enterprise SOC • Detection Engineering • Threat Hunting • Blue Team Projects*
+
+</div>
