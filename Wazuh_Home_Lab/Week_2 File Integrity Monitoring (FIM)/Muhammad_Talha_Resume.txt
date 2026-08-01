@@ -1,0 +1,144 @@
+MUHAMMAD
+TALHA
+
+SUMMARY
+Dedicated Blue Team professional with hands-on
+experience in Security Operations Center (SOC) operations,
+
+DETAILS
+mtalha27709@gmail.com
++920331621629
+Pakistan
+
+SIEM deployment, and threat detection. Currently pursuing
+a Diploma in Cloud Cyber Security from Alnafi (RQF Level 3).
+Proficient in Wazuh and Splunk Enterprise for log analysis,
+alert triage, and dashboard creation. Demonstrated ability
+to develop custom detection rules, implement File Integrity
+Monitoring (FIM), and execute active response for
+automated threat mitigation. Successfully mentored 50+
+
+SKILLS
+• SIEM Operations
+• Incident Response
+• Threat Hunting
+• Wazuh
+
+students on Splunk Enterprise fundamentals. Strong
+foundation in both Blue Team (DFIR, Threat Hunting) and
+Red Team (Penetration Testing, Malware Analysis) domains,
+enabling proactive defense strategies. Actively solving labs
+on TryHackMe, Hack The Box, and Cybrixen. Passionate
+about cloud security with hands-on experience in Azure and
+AWS, and skilled in Python and Bash scripting for security
+automation.
+
+• Splunk Enterprise
+• Log Analysis
+• File Integrity Monitoring (FIM)
+• MITRE ATT&CK Framework
+• Python Scripting
+• Penetration Testing basic
+• Vulnerability Assessment
+• Cloud Security (Azure/AWS)
+• Malware Analysis
+• Linux Administration
+• NIST Cybersecurity Framework
+
+EXPERIENCE
+Jun 2026 — Current
+Blue Team Intern
+Cyberster, Remote
+Deploying and managing Wazuh SIEM stack (Manager,
+Indexer, Dashboard) • Configuring File Integrity Monitoring
+(FIM) on Linux and Windows agents • Developing custom
+detection rules for SSH brute force, user creation, and USB
+insertion • Performing log analysis and threat hunting
+across multiple agents • Implementing active response for
+automated threat mitigation • Applying MITRE ATT&CK
+framework for alert categorization
+May 2026 — Current
+Mentorship Program
+Mentor & Trainer, Remote
+• Successfully trained 50+ students on Splunk Enterprise
+fundamentals • Covered forwarder configuration, alert
+triggering, and dashboard creation • Provided hands-on
+guidance on log analysis and SIEM operations
+Jun 2026 — Current
+
+Security Engineer Intern
+DevelopersHub, Remote
+Secured a User Management System (Node.js + Express +
+MongoDB) by identifying vulnerabilities, implementing JWT
+authentication, password hashing (bcrypt), input validation,
+and structured logging (Winston). Conducted security
+testing and validated system behavior under malicious
+input conditions.
+
+Jun 2026 — Current
+Security Analyst Intern
+Arch Technologies, Remote
+Developed hands-on cybersecurity skills through practical
+projects focused on network security, threat detection, and
+offensive security fundamentals.
+Key Contributions:
+Built a Network Packet Sniffer in Python to capture and
+analyze live network traffic, gaining deep understanding of
+packet structure and data flow
+Developed a Keylogger in a controlled environment to
+understand keystroke logging mechanisms and associated
+security risks
+Documented all projects with detailed implementation
+reports, code explanations, and working screenshots
+Gained practical exposure to network security, Python
+scripting, and cybersecurity tool development
+Jun 2026 — Jul 2026
+Cyber Threat Intelligence Intern
+MONEY MITRA NETWORK, Remote
+Conducted in-depth cyber threat analysis and risk
+assessments based on real-world attack scenarios.
+Investigated adversary tactics, techniques, and procedures
+(TTPs), mapped findings to the MITRE ATT&CK Framework,
+and produced comprehensive security reports with
+actionable recommendations for threat mitigation and
+defense strategy enhancement.
+Jun 2026 — Jul 2026
+Security Engineer Intern
+CodeAlpha, Remote
+
+Built a Python-based network packet sniffer to capture and
+analyze live network traffic, extracting source/destination
+IPs, protocols, and payloads. Also deployed a Network
+Intrusion Detection System (NIDS) using Suricata/Snort to
+monitor traffic, detect suspicious activities, and generate
+real-time alerts for potential threats.
+Jun 2026 — Current
+Splunk SIEM Log Analysis & Network Security Toolkit
+InternCareerPath, Remote
+This project focuses on building a Network Security Toolkit
+and performing SIEM-based log analysis using Splunk. It
+includes developing a Python-based port scanner for
+network reconnaissance and analyzing security event logs
+to detect threats, suspicious activities, and anomalies.
+
+EDUCATION
+Sep 2025 — Current
+Diploma in Cloud Cyber Security
+Al-Nafi International College, Remote
+Currently studying Cloud Cybersecurity and developing
+skills in Linux, networking, cloud security, and threat
+detection.
+Gaining hands-on experience through labs and practical
+cybersecurity exercises.
+Focused on becoming a Cloud Security Analyst and SOC
+Analyst.
+
+CERTIFICATIONS AND LICENSES
+1. SOC Analyst Level 1
+2. ISO 27001 Fundamentals
+3. Splunk Introduction
+4. Cyber Threat Management
+5. Junior Cybersecurity Analyst Career Path (And Many More
+Entry Level Certificates)
+
+
