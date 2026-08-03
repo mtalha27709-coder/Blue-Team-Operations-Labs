@@ -1,271 +1,274 @@
-# ??? Splunk Home Lab � SIEM & Log Management
+# 🔷 Enterprise Splunk SIEM Home Lab
 
-## ?? Project Overview
+<div align="center">
 
-This project demonstrates the design and implementation of a **Splunk Home Lab** for Security Information and Event Management (SIEM). The lab was built to simulate real-world SOC environments by collecting, indexing, monitoring, and analyzing logs from multiple sources including Windows systems, Apache Web Server, and FortiGate Firewall.
+![Splunk](https://img.shields.io/badge/SIEM-Splunk-black?style=for-the-badge&logo=splunk)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04-E95420?style=for-the-badge&logo=ubuntu)
+![Windows](https://img.shields.io/badge/Windows-10-0078D6?style=for-the-badge&logo=windows)
+![Apache](https://img.shields.io/badge/Apache-Web%20Server-D22128?style=for-the-badge&logo=apache)
+![Fortinet](https://img.shields.io/badge/FortiGate-Firewall-EE3124?style=for-the-badge&logo=fortinet)
+![SOC](https://img.shields.io/badge/SOC-Lab-blue?style=for-the-badge)
+![Blue Team](https://img.shields.io/badge/Blue-Team-success?style=for-the-badge)
 
-The project focuses on log collection, data ingestion, event analysis, dashboard creation, and basic security monitoring using Splunk Enterprise.
+*A complete enterprise-style Splunk SIEM laboratory demonstrating log collection, data ingestion, centralized monitoring, dashboard development, security investigations, and SOC workflows.*
+
+</div>
 
 ---
 
-# ?? Objectives
+# 📖 Project Overview
 
+This repository documents the design, deployment, and operation of an **Enterprise Splunk SIEM Home Lab** built to simulate a real-world **Security Operations Center (SOC)** environment.
+
+The lab integrates multiple data sources—including **Windows endpoints**, **Apache Web Server**, and a **FortiGate Firewall**—into **Splunk Enterprise** for centralized log collection, indexing, visualization, and security monitoring.
+
+Throughout this project, I gained practical experience with **SIEM administration**, **log forwarding**, **dashboard creation**, **search optimization**, **event correlation**, and **security monitoring**, following workflows commonly used by SOC Analysts, Detection Engineers, and Blue Team professionals.
+
+---
+
+# 🎯 Project Objectives
+
+- Design an enterprise-style Splunk SIEM lab
 - Install and configure Splunk Enterprise
-- Learn SIEM fundamentals
-- Collect logs from multiple sources
 - Configure Splunk Universal Forwarder
+- Collect and index logs from multiple sources
 - Integrate Apache Web Server logs
-- Configure FortiGate Syslog
-- Create Splunk dashboards
-- Perform basic log analysis
-- Develop SOC monitoring skills
+- Configure FortiGate Syslog forwarding
+- Build operational dashboards
+- Perform security log analysis
+- Practice SOC monitoring workflows
+- Improve SIEM administration skills
 
 ---
 
-# ??? Lab Environment
+# 🏗️ Lab Architecture
 
-| Component | Details |
-|----------|---------|
-| SIEM | Splunk Enterprise |
-| Operating System | Ubuntu Linux / Windows |
-| Web Server | Apache2 |
-| Firewall | FortiGate |
-| Log Collection | Splunk Universal Forwarder |
-| Protocol | Syslog |
-
----
-
-# ?? Project Structure
-
-```
-Splunk-Home-Lab/
-?
-??? README.md
-??? Installation_Guide.pdf
-??? Screenshots/
-??? Configurations/
-?   ??? inputs.conf
-?   ??? outputs.conf
-?   ??? props.conf
-?
-??? Dashboards/
-??? Reports/
-??? Notes/
+```text
+                    Windows Endpoint
+                           │
+                           │
+                Splunk Universal Forwarder
+                           │
+                           ▼
+                   Splunk Enterprise
+                  (Ubuntu Linux Server)
+                    /              \
+                   /                \
+        Apache Web Server      FortiGate Firewall
+         Access/Error Logs          Syslog
 ```
 
 ---
 
-# ??? Lab Architecture
+# 🛠️ Technologies Used
 
-```
-Apache Server
-        ?
-        ?
-Universal Forwarder
-        ?
-        ?
-  Splunk Enterprise
-        ?
-        ?
-     FortiGate
-        ?
-      Syslog
+| Technology | Purpose |
+|------------|---------|
+| Splunk Enterprise | SIEM Platform |
+| Splunk Universal Forwarder | Log Collection |
+| Ubuntu Linux | Splunk Server |
+| Windows 10 | Endpoint |
+| Apache Web Server | Web Log Source |
+| FortiGate Firewall | Firewall Logging |
+| Syslog | Log Transport |
+| CLI | System Administration |
+| TCP/IP | Network Communication |
+
+---
+
+# ⚙️ Project Structure
+
+```text
+Enterprise-Splunk-SIEM-Home-Lab/
+
+│
+├── 01-Installation/
+├── 02-Splunk-Configuration/
+├── 03-Universal-Forwarder/
+├── 04-Apache-Integration/
+├── 05-FortiGate-Integration/
+├── 06-Log-Collection/
+├── 07-Dashboards/
+├── 08-Log-Analysis/
+├── 09-Screenshots/
+├── 10-Documentation/
+└── README.md
 ```
 
 ---
 
-# ?? Lab Implementation
+# 🚀 Lab Implementation
 
-## Step 1 � Install Splunk Enterprise
+## Phase 1 — Splunk Enterprise Deployment
+
+- Installed Splunk Enterprise
+- Configured administrative settings
+- Verified web interface
+- Created indexes
+- Configured data management
+
+---
+
+## Phase 2 — Universal Forwarder
+
+Configured Splunk Universal Forwarder for secure log forwarding.
 
 Completed:
 
-- Splunk Installation
-- Initial Configuration
-- Web Interface Access
-
----
-
-## Step 2 � Configure Splunk
-
-Configured:
-
-- Admin Account
-- Default Index
-- Search Head
-- Data Management
-
----
-
-## Step 3 � Upload Sample Data
-
-Performed:
-
-- Manual Data Upload
-- Data Indexing
-- Search Verification
-
----
-
-## Step 4 � Configure Universal Forwarder
-
-Configured:
-
-- Forwarder Installation
-- outputs.conf
+- Installation
 - inputs.conf
-- Connection to Splunk Server
+- outputs.conf
+- Connectivity testing
+- Log forwarding validation
 
 ---
 
-## Step 5 � Apache Log Integration
+## Phase 3 — Apache Log Integration
 
-Configured:
+Integrated Apache Web Server logs into Splunk.
 
-- Apache Access Logs
-- Apache Error Logs
-- Log Forwarding
-- Splunk Indexing
+Collected:
 
----
-
-## Step 6 � FortiGate Integration
-
-Configured:
-
-- Syslog
-- FortiGate Logging
-- Log Forwarding
-- Splunk Data Collection
+- Access Logs
+- Error Logs
+- HTTP Requests
+- Status Codes
 
 ---
 
-## Step 7 � Dashboard Creation
+## Phase 4 — FortiGate Integration
+
+Configured FortiGate Firewall to forward Syslog events.
+
+Collected:
+
+- Firewall Events
+- Traffic Logs
+- Security Events
+- Network Activity
+
+---
+
+## Phase 5 — Dashboard Development
 
 Created dashboards for:
 
 - Log Overview
-- Event Monitoring
-- Search Results
-- Basic Security Monitoring
+- Security Events
+- Host Activity
+- Apache Monitoring
+- Firewall Monitoring
+- Event Trends
 
 ---
 
-## Step 8 � Log Analysis
+## Phase 6 — Security Monitoring
 
 Performed:
 
-- Search Queries
+- Log Searching
 - Event Filtering
-- Log Investigation
-- Data Review
+- Security Investigation
+- Dashboard Analysis
+- Data Validation
 
 ---
 
-# ?? Features Implemented
+# 📊 Features Implemented
+
+- ✅ Splunk Enterprise Deployment
+- ✅ Universal Forwarder Configuration
+- ✅ Apache Log Collection
+- ✅ FortiGate Syslog Integration
+- ✅ Log Indexing
+- ✅ Search & Reporting
+- ✅ Dashboard Development
+- ✅ Event Monitoring
+- ✅ Security Log Analysis
+- ✅ SIEM Administration
+
+---
+
+# 📸 Evidence Included
+
+This repository contains screenshots demonstrating:
 
 - Splunk Installation
-- Data Upload
-- Log Indexing
-- Universal Forwarder
-- Apache Log Collection
-- FortiGate Syslog Integration
-- Dashboard Creation
-- Event Search
-- Basic Monitoring
-- SIEM Fundamentals
-
----
-
-# ??? Tools & Technologies
-
-- Splunk Enterprise
-- Splunk Universal Forwarder
-- Ubuntu Linux
-- Windows
-- Apache Web Server
-- FortiGate Firewall
-- Syslog
-- CLI
-- TCP/IP Networking
-
----
-
-# ?? Screenshots Included
-
-- Splunk Installation
-- Splunk Login
-- Introduction to Splunk
-- Data Upload
-- Data Indexing
-- Apache Forwarder Configuration
-- Apache Input & Output Configuration
-- Apache Log Integration
-- FortiGate Installation
+- Web Interface
+- Universal Forwarder Configuration
+- Apache Integration
 - FortiGate Configuration
-- FortiGate Dashboard
-- Syslog Configuration
-- FortiGate Logs in Splunk
-- Dashboard Creation
-- Data Review
-- Search Results
+- Syslog Events
+- Search Queries
+- Dashboards
+- Indexed Logs
+- Monitoring Results
 
 ---
 
-# ?? Skills Demonstrated
+# 🧠 Skills Demonstrated
 
 - SIEM Administration
 - Splunk Enterprise
-- Log Collection
-- Log Forwarding
 - Splunk Universal Forwarder
-- Apache Integration
+- Log Collection
+- Log Parsing
+- Data Ingestion
+- Event Correlation
+- Dashboard Development
+- Apache Log Analysis
 - FortiGate Integration
 - Syslog Configuration
-- Dashboard Development
-- Log Analysis
 - Security Monitoring
+- SOC Operations
+- Log Investigation
+- Blue Team Operations
 
 ---
 
-# ?? Learning Outcomes
+# 🎓 Key Learning Outcomes
 
-After completing this lab, I gained practical experience in:
+Through this project, I developed practical experience in:
 
-- Installing Splunk Enterprise
-- Configuring Splunk Universal Forwarder
-- Managing data ingestion
-- Indexing security logs
-- Integrating Apache server logs
-- Configuring FortiGate Syslog
-- Building Splunk dashboards
-- Performing log analysis
-- Understanding SOC workflows
+- Deploying and managing Splunk Enterprise
+- Building a centralized log management solution
+- Configuring Universal Forwarders
+- Integrating enterprise log sources
+- Developing dashboards for security visibility
+- Investigating security events
+- Monitoring infrastructure activity
+- Understanding SOC monitoring workflows
+- Performing SIEM administration tasks
 
 ---
 
-# ?? Career Relevance
+# 💼 Career Relevance
 
-This project demonstrates practical skills relevant to:
+This project demonstrates practical skills applicable to:
 
-- SOC Analyst
+- SOC Analyst (L1/L2)
 - SIEM Engineer
-- Blue Team Analyst
+- Detection Engineer
 - Security Analyst
+- Blue Team Analyst
 - Cybersecurity Analyst
-- System Administrator
-- Network Security Engineer
+- Security Operations Engineer
+- Infrastructure Security Engineer
 
 ---
 
-# ?? Conclusion
+# 🏁 Conclusion
 
-This Splunk Home Lab simulates a real-world Security Operations Center (SOC) environment by integrating multiple log sources into Splunk Enterprise. Through log collection, indexing, dashboard creation, and event analysis, the project provides hands-on experience with SIEM operations, security monitoring, and incident investigation techniques commonly used by cybersecurity professionals.
+The successful completion of this **Enterprise Splunk SIEM Home Lab** demonstrates practical experience in designing, deploying, and operating a centralized security monitoring platform.
+
+By integrating multiple log sources into Splunk Enterprise, configuring data ingestion pipelines, creating dashboards, and performing security investigations, this project reflects real-world SOC workflows used by modern Security Operations Centers.
+
+This repository showcases hands-on experience with SIEM administration, log management, event analysis, and enterprise security monitoring, providing a strong foundation for roles in SOC Operations, Detection Engineering, Threat Hunting, and Blue Team Security.
 
 ---
 
-## ????? Author
+# 👨‍💻 Author
 
 **Muhammad Talha**
 
-Cyber Security Student | SOC Analyst | Splunk | SIEM | Blue Team | Threat Hunting | Network Security
+**Aspiring Cloud Security Engineer | SOC Analyst | Detection Engineer | SIEM | Splunk | Wazuh | Threat Hunting | Blue Team | MITRE ATT&CK**
