@@ -1,274 +1,296 @@
-# ? Suspicious PowerShell Activity Investigation using Splunk
+# 🔷 Enterprise PowerShell Threat Detection & Investigation using Splunk
 
-## ?? Project Overview
+<div align="center">
 
-This project demonstrates the investigation of **Suspicious PowerShell Activity** using **Splunk Enterprise**. The objective was to detect malicious PowerShell execution patterns such as encoded commands, execution policy bypass attempts, hidden execution, and outbound web requests that are commonly associated with attacker techniques and post-exploitation activities.
+![Splunk](https://img.shields.io/badge/SIEM-Splunk-black?style=for-the-badge&logo=splunk)
+![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell)
+![Windows](https://img.shields.io/badge/Windows-Event%20Logs-0078D6?style=for-the-badge&logo=windows)
+![MITRE](https://img.shields.io/badge/MITRE-ATT%26CK-red?style=for-the-badge)
+![Threat Hunting](https://img.shields.io/badge/Threat-Hunting-success?style=for-the-badge)
+![Detection Engineering](https://img.shields.io/badge/Detection-Engineering-blueviolet?style=for-the-badge)
 
-The investigation follows a real-world SOC workflow by analyzing PowerShell execution logs, identifying Indicators of Compromise (IOCs), and mapping the findings to the **MITRE ATT&CK Framework**.
+**A real-world SOC investigation focused on detecting malicious PowerShell activity, developing Splunk detections, performing threat hunting, and mapping attacker behavior to the MITRE ATT&CK Framework.**
 
----
-
-# ?? Objectives
-
-- Detect encoded PowerShell commands
-- Identify Execution Policy Bypass attempts
-- Detect hidden PowerShell execution
-- Investigate outbound web requests
-- Hunt for suspicious PowerShell behavior
-- Develop Splunk detection queries
-- Map findings to MITRE ATT&CK
-- Document investigation findings
+</div>
 
 ---
 
-# ??? Lab Environment
+# 📖 Project Overview
 
-| Component | Details |
-|----------|---------|
-| SIEM | Splunk Enterprise |
-| Data Source | PowerShell Operational Logs |
-| Log Type | PowerShell Execution Logs |
-| Framework | MITRE ATT&CK |
+This project demonstrates a complete **SOC investigation and Detection Engineering workflow** for identifying suspicious **PowerShell activity** using **Splunk Enterprise**.
 
----
+The investigation focuses on detecting attacker techniques commonly observed during **initial compromise, post-exploitation, malware execution, and defense evasion**, including encoded commands, execution policy bypass, hidden execution, and malicious web requests.
 
-# ?? Skills Demonstrated
-
-- Splunk SPL
-- PowerShell Threat Hunting
-- Log Analysis
-- Detection Engineering
-- Incident Investigation
-- MITRE ATT&CK Mapping
-- Blue Team Operations
-- SOC Investigation
+Using **Splunk Search Processing Language (SPL)**, Windows PowerShell Operational Logs, and the **MITRE ATT&CK Framework**, this lab simulates how SOC Analysts and Detection Engineers investigate suspicious activity, validate detections, identify Indicators of Compromise (IOCs), and improve enterprise monitoring capabilities.
 
 ---
 
-# ?? Project Structure
+# 🎯 Project Objectives
 
-```
-PowerShell-Investigation/
-?
-??? README.md
-??? Investigation_Report.pdf
-??? SPL_Queries.md
-??? Screenshots/
-?   ??? Encoded_Command.png
-?   ??? ExecutionPolicy_Bypass.png
-?   ??? Hidden_PowerShell.png
-?   ??? Invoke_WebRequest.png
-?   ??? Threat_Hunting.png
-?   ??? Dashboard.png
-?
-??? Logs/
-    ??? powershell_logs.txt
+- Detect malicious PowerShell activity using Splunk
+- Identify Base64 encoded PowerShell commands
+- Detect Execution Policy Bypass attempts
+- Investigate hidden PowerShell execution
+- Analyze outbound PowerShell web requests
+- Hunt for attacker behavior using SPL
+- Identify Indicators of Compromise (IOCs)
+- Map detections to the MITRE ATT&CK Framework
+- Strengthen Detection Engineering skills
+- Document SOC investigation findings
+
+---
+
+# 🏗️ Lab Architecture
+
+```text
+Windows Endpoint
+(PowerShell Operational Logs)
+            │
+            ▼
+   Splunk Enterprise SIEM
+            │
+            ▼
+     SPL Threat Hunting
+            │
+            ▼
+ IOC Identification & Analysis
+            │
+            ▼
+ MITRE ATT&CK Mapping
+            │
+            ▼
+ Incident Investigation Report
 ```
 
 ---
 
-# ?? Investigation Workflow
+# 🛠️ Technologies Used
 
+| Technology | Purpose |
+|------------|---------|
+| Splunk Enterprise | SIEM Platform |
+| Windows Event Logs | Log Source |
+| PowerShell Operational Logs | Endpoint Telemetry |
+| SPL | Detection Queries |
+| MITRE ATT&CK | Threat Classification |
+| Windows 10 | Target Endpoint |
+
+---
+
+# 📂 Project Structure
+
+```text
+Enterprise-PowerShell-Threat-Detection/
+
+│
+├── README.md
+├── Investigation_Report.pdf
+├── SPL_Queries.md
+├── Logs/
+│   └── powershell_logs.txt
+├── Screenshots/
+│   ├── Encoded_Command.png
+│   ├── ExecutionPolicy_Bypass.png
+│   ├── Hidden_PowerShell.png
+│   ├── Invoke_WebRequest.png
+│   ├── Threat_Hunting.png
+│   └── Dashboard.png
 ```
+
+---
+
+# 🔍 Investigation Workflow
+
+```text
 PowerShell Logs
-        ?
-        ?
+        │
+        ▼
 Splunk Data Ingestion
-        ?
-        ?
-Encoded Command Detection
-        ?
-        ?
-Execution Policy Analysis
-        ?
-        ?
-Hidden Execution Detection
-        ?
-        ?
-Web Request Investigation
-        ?
-        ?
+        │
+        ▼
+Detection Queries (SPL)
+        │
+        ▼
 Threat Hunting
-        ?
-        ?
+        │
+        ▼
+IOC Analysis
+        │
+        ▼
 MITRE ATT&CK Mapping
-        ?
-        ?
-Incident Report
+        │
+        ▼
+Incident Investigation
+        │
+        ▼
+Security Recommendations
 ```
 
 ---
 
-# ?? Investigation Steps
+# 🚀 Investigation Scenarios
 
-## Step 1 � Log Collection
+### ✅ Encoded PowerShell Detection
 
-PowerShell execution logs were uploaded into Splunk and indexed for analysis.
+Detected Base64 encoded PowerShell commands commonly used to evade detection and execute malicious payloads.
 
----
-
-## Step 2 � Encoded Command Detection
-
-### SPL Query
-
-```spl
-index=powershell commandline="*-enc*"
-```
-
-Purpose:
-
-- Detect Base64 encoded PowerShell commands
-- Identify obfuscated script execution
+**MITRE:** T1059.001
 
 ---
 
-## Step 3 � Execution Policy Bypass
+### ✅ Execution Policy Bypass
 
-### SPL Query
+Identified PowerShell executions attempting to bypass default security restrictions.
 
-```spl
-index=powershell commandline="*ExecutionPolicy Bypass*"
-```
-
-Purpose:
-
-- Detect attempts to bypass PowerShell security restrictions
+**MITRE:** T1562
 
 ---
 
-## Step 4 � Web Request Investigation
+### ✅ Hidden PowerShell Execution
 
-### SPL Query
+Detected PowerShell launched with hidden windows to avoid user awareness.
 
-```spl
-index=powershell commandline="*Invoke-WebRequest*"
-```
-
-Purpose:
-
-- Detect payload downloads
-- Identify suspicious outbound communications
+**MITRE:** T1027
 
 ---
 
-## Step 5 � Hidden PowerShell Execution
+### ✅ Invoke-WebRequest Activity
 
-### SPL Query
+Investigated outbound HTTP requests initiated by PowerShell to identify possible payload downloads and command-and-control communications.
 
-```spl
-index=powershell commandline="*Hidden*"
-```
-
-Purpose:
-
-- Detect hidden PowerShell windows
-- Identify stealthy execution techniques
+**MITRE:** T1105
 
 ---
 
-## Step 6 � Threat Hunting
+### ✅ Threat Hunting
 
-Review all suspicious PowerShell activity and correlate events to identify attacker behavior.
-
----
-
-# ?? Indicators of Compromise (IOCs)
-
-| IOC Type | Description |
-|----------|-------------|
-| Encoded Commands | Base64 encoded PowerShell execution |
-| Execution Policy Bypass | Security restriction bypass |
-| Hidden Execution | Stealth PowerShell execution |
-| Invoke-WebRequest | Payload download or external communication |
-| Suspicious Command Line | Potential attacker activity |
+Performed proactive hunting using custom SPL queries to identify suspicious PowerShell behavior and validate detection coverage.
 
 ---
 
-# ??? MITRE ATT&CK Mapping
+# 📊 Indicators of Compromise (IOCs)
+
+| IOC | Description |
+|------|-------------|
+| Base64 Encoded Commands | Obfuscated PowerShell execution |
+| ExecutionPolicy Bypass | Security control bypass |
+| Hidden Window Execution | Stealth execution |
+| Invoke-WebRequest | Payload retrieval / C2 communication |
+| Suspicious Command Lines | Potential attacker activity |
+
+---
+
+# 🛡️ MITRE ATT&CK Mapping
 
 | Tactic | Technique | MITRE ID |
 |---------|-----------|-----------|
 | Execution | PowerShell | T1059.001 |
-| Execution | Command and Scripting Interpreter | T1059 |
-| Defense Evasion | Obfuscated Files and Information | T1027 |
+| Execution | Command & Scripting Interpreter | T1059 |
+| Defense Evasion | Obfuscated Files & Information | T1027 |
 | Defense Evasion | Impair Defenses | T1562 |
+| Command & Control | Ingress Tool Transfer | T1105 |
 
 ---
 
-# ?? Key Findings
+# 📈 Key Findings
 
-- Encoded PowerShell commands detected
-- Execution Policy Bypass attempts observed
-- Hidden PowerShell execution identified
-- Outbound web requests detected
-- Suspicious command-line behavior analyzed
-- Multiple events aligned with common attacker techniques
+- Base64 encoded PowerShell commands successfully detected.
+- Multiple Execution Policy Bypass attempts identified.
+- Hidden PowerShell execution observed.
+- Outbound web requests investigated.
+- Suspicious command-line behavior analyzed.
+- Detection coverage validated using SPL.
+- Events successfully mapped to MITRE ATT&CK techniques.
 
 ---
 
-# ?? Risk Assessment
+# ⚠️ Risk Assessment
 
-Potential risks include:
+Potential risks identified include:
 
 - Malware execution
-- Script-based attacks
-- Payload download
+- Payload downloads
+- Command-and-control communication
 - Defense evasion
 - Unauthorized administrative activity
 - Post-exploitation behavior
+- Lateral movement preparation
 
 ---
 
-# ??? Security Recommendations
+# 🔐 Security Recommendations
 
-- Enable PowerShell Script Block Logging
+- Enable Script Block Logging
 - Enable Module Logging
 - Enable PowerShell Transcription
-- Monitor encoded PowerShell commands
-- Alert on Execution Policy Bypass attempts
-- Investigate outbound web requests
-- Deploy Sysmon for enhanced visibility
+- Monitor Base64 encoded commands
+- Alert on Execution Policy Bypass
+- Deploy Sysmon for enhanced telemetry
+- Investigate suspicious outbound PowerShell traffic
 - Restrict unnecessary PowerShell usage
-- Continuously monitor PowerShell activity in Splunk
+- Develop custom Splunk detection rules
+- Continuously validate detection coverage
 
 ---
 
-# ?? Learning Outcomes
+# 💡 Skills Demonstrated
 
-After completing this project, I gained practical experience in:
+- Detection Engineering
+- Splunk Enterprise
+- SPL Query Development
+- Threat Hunting
+- Windows Event Log Analysis
+- PowerShell Investigation
+- IOC Analysis
+- MITRE ATT&CK Mapping
+- SOC Investigation
+- Incident Response
+- Blue Team Operations
+- Security Monitoring
+
+---
+
+# 🎓 Learning Outcomes
+
+Through this project, I gained practical experience in:
 
 - Investigating PowerShell-based attacks
-- Writing Splunk SPL queries
-- Detecting obfuscated PowerShell execution
-- Identifying attacker techniques
-- Mapping findings to MITRE ATT&CK
-- Performing threat hunting
+- Developing Splunk detection queries
+- Detecting obfuscated PowerShell activity
+- Identifying attacker tradecraft
+- Performing enterprise threat hunting
+- Mapping detections to MITRE ATT&CK
 - Conducting SOC investigations
-- Building PowerShell detection logic
+- Improving SIEM detection coverage
 
 ---
 
-# ?? Career Relevance
+# 💼 Career Relevance
 
-This project demonstrates practical skills relevant to:
+This project demonstrates practical skills applicable to:
 
-- SOC Analyst (L1/L2)
-- Blue Team Analyst
-- Threat Hunter
-- Incident Responder
 - Detection Engineer
+- SOC Analyst (L1/L2)
+- Threat Hunter
+- Blue Team Analyst
+- Incident Responder
 - Security Analyst
+- SIEM Engineer
 
 ---
 
-# ?? Conclusion
+# 🏁 Conclusion
 
-This project demonstrates a practical SOC investigation of suspicious PowerShell activity using Splunk Enterprise. By identifying encoded commands, execution policy bypass attempts, hidden execution, and outbound web requests, the investigation highlights attacker tradecraft commonly seen during post-exploitation. The project strengthens hands-on experience in threat hunting, detection engineering, and PowerShell security monitoring.
+This project demonstrates an enterprise-style **PowerShell Threat Detection and Investigation** workflow using Splunk Enterprise.
+
+By combining **Splunk SPL**, **PowerShell Operational Logs**, **IOC analysis**, and **MITRE ATT&CK mapping**, the lab reflects the day-to-day responsibilities of SOC Analysts and Detection Engineers responsible for identifying malicious PowerShell activity, validating detections, and strengthening enterprise security monitoring.
+
+This repository serves as a practical portfolio project showcasing hands-on experience in Detection Engineering, Threat Hunting, SIEM Operations, and Blue Team investigations.
 
 ---
 
-## ????? Author
+# 👨‍💻 Author
 
 **Muhammad Talha**
 
-Cyber Security Student | SOC Analyst | Splunk | Threat Hunting | Blue Team | Detection Engineering | MITRE ATT&CK
+**Aspiring Cloud Security Engineer | SOC Analyst | Detection Engineer | SIEM | Splunk | Wazuh | Threat Hunting | Blue Team | MITRE ATT&CK**
